@@ -23,13 +23,13 @@ router.post("/create", authCheck, async (req, res) => {
 
 router.get("/all", authCheck, async (req, res) => {
   const { limit, sort, order, page } = req.query;
-  const currentPage = page || 1;
-  const perPage = limit;
+  const pageSize = parseInt(page || 0);
+  const perPage = parseInt(limit);
 
   const response = await Tokens.find({})
-    .skip((currentPage - 1) * perPage)
+    .skip(pageSize * perPage)
     .sort([[sort, order]])
-    .limit(parseInt(limit));
+    .limit(perPage);
 
   // const response = await req.user.populate({
   //   path: "tokens",
