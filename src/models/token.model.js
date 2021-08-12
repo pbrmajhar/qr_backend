@@ -14,6 +14,10 @@ const tokenSchema = new mongoose.Schema(
       type: Number,
       require: true,
     },
+    used: {
+      type: Boolean,
+      require: true,
+    },
     admin: {
       type: ObjectId,
       ref: "Users",
