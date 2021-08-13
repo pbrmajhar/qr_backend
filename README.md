@@ -7,3 +7,6 @@
 6.jsonwebtoken
 7.mongoose
 8.multer
+
+
+for paginatin we need to set limit on the query and a skip and skip will be limit times current page

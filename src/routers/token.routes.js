@@ -30,15 +30,9 @@ router.get("/all", authCheck, async (req, res) => {
     .skip(pageSize * perPage)
     .sort([[sort, order]])
     .limit(perPage);
+  const total = await Tokens.countDocuments({});
 
-  // const response = await req.user.populate({
-  //   path: "tokens",
-  //   match: {
-  //     used: false,
-  //   },
-  // });
-
-  res.send(response);
+  res.send({ totalPages: Math.ceil(total / perPage), tokens: response });
 });
 
 router.get("/count", async (req, res) => {
